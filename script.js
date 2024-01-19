@@ -1,44 +1,43 @@
 const container = document.querySelector('.container');
 const search = document.querySelector('.search-box button');
+const searchInput = document.querySelector('.search-box input');
 const weatherBox = document.querySelector('.weather-box');
 const weatherDetails = document.querySelector('.weather-details');
 const error404 = document.querySelector('.not-found');
 const cityHide = document.querySelector('.city-hide');
 
-
-search.addEventListener('click',() => {
-
+function fetchData() {
     const APIKey = '231b5e4592f3c3abfc4cc9f82fa818b0';
-    const city = document.querySelector('.search-box input').value;
+    const city = searchInput.value;
 
     if (city == '')
         return;
 
     fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${APIKey}`)
-    .then(response => {
-        return response.json();
-    })
-    .then(json => {
+        .then(response => {
+            return response.json();
+        })
+        .then(json => {
+            if (json.cod == '404') {
+                cityHide.textContent = city;
+                container.style.height = '400px';
+                weatherBox.classList.remove('active');
+                weatherDetails.classList.remove('active');
+                error404.classList.add('active');
+                return;
+            }
 
-        if (json.cod == '404'){
-            cityHide.textContent = city;
-            container.style.height = '400px';
-            weatherBox.classList.remove('active');
-            weatherDetails.classList.remove('active');
-            error404.classList.add('active');
+                
+            const image = document.querySelector('.weather-box img');
+            const temperature = document.querySelector('.weather-box .temperature');
+            const description = document.querySelector('.weather-box .description');
+            const humidity = document.querySelector('.weather-details .humidity span');
+            const wind = document.querySelector('.weather-details .wind span');
+
+            if (cityHide.textContent == city) {
             return;
-        }
-
-        const image = document.querySelector('.weather-box img');
-        const temperature = document.querySelector('.weather-box .temperature');
-        const description = document.querySelector('.weather-box .description');
-        const humidity = document.querySelector('.weather-details .humidity span');
-        const wind = document.querySelector('.weather-details .wind span');
-
-        if (cityHide.textContent == city) {
-            return;
-        }
-        else{
+            }
+            else{
             cityHide.textContent =city;
 
             container.style.height = '555px';
@@ -128,10 +127,21 @@ search.addEventListener('click',() => {
                     cloneInfoWeatherFirst.remove();
                     cloneInfoHumidityFirst.remove();
                     cloneInfoWindFirst.remove();
-                }, 2200);
+                }, 5000);
             }
 
-        }
+            }
 
-    });
+        })
+        .catch(error => {
+            console.error('Error during fetch:', error);
+        });
+}
+
+search.addEventListener('click', fetchData);
+
+searchInput.addEventListener('keyup', (event) => {
+    if (event.key === 'Enter') {
+        fetchData();
+    }
 });
