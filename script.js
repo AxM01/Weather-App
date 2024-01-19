@@ -122,12 +122,13 @@ function fetchData() {
                 cloneInfoWeatherFirst.classList.remove('active-clone');
                 cloneInfoHumidityFirst.classList.remove('active-clone');
                 cloneInfoWindFirst.classList.remove('active-clone');
-
+            
                 setTimeout(()=>{
                     cloneInfoWeatherFirst.remove();
                     cloneInfoHumidityFirst.remove();
                     cloneInfoWindFirst.remove();
-                },2200);
+            
+                },10000);
             }
 
             }
@@ -139,13 +140,6 @@ function fetchData() {
 }
 
 search.addEventListener('click', fetchData);
-
-searchInput.addEventListener('keyup', (event) => {
-    if (event.key === 'Enter') {
-        fetchData();
-    }
-});
-
 
 searchInput.addEventListener('keyup', (event) => {
     if (event.key === 'Enter') {
