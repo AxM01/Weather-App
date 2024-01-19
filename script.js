@@ -127,7 +127,7 @@ function fetchData() {
                     cloneInfoWeatherFirst.remove();
                     cloneInfoHumidityFirst.remove();
                     cloneInfoWindFirst.remove();
-                }, 22000);
+                },2200);
             }
 
             }
@@ -139,6 +139,13 @@ function fetchData() {
 }
 
 search.addEventListener('click', fetchData);
+
+searchInput.addEventListener('keyup', (event) => {
+    if (event.key === 'Enter') {
+        fetchData();
+    }
+});
+
 
 searchInput.addEventListener('keyup', (event) => {
     if (event.key === 'Enter') {
