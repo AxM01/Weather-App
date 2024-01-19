@@ -111,13 +111,13 @@ search.addEventListener('click',() => {
 
             const cloneInfoWeather = document.querySelectorAll('.info-weather.active-clone');
             const totalCloneInfoWeather = cloneInfoWeather.length;
-            const totalCloneInfoWeatherFirst = cloneInfoWeather[0];
+            const cloneInfoWeatherFirst = cloneInfoWeather[0];
 
             const cloneInfoHumidity = document.querySelectorAll('.info-humidity.active-clone');
-            const totalCloneInfoHumidityFirst = cloneInfoHumidity[0];
+            const cloneInfoHumidityFirst = cloneInfoHumidity[0];
 
             const cloneInfoWind = document.querySelectorAll('.info-wind.active-clone');
-            const totalCloneInfoWindFirst = cloneInfoWind[0];
+            const cloneInfoWindFirst = cloneInfoWind[0];
 
             if (totalCloneInfoWeather > 0){
                 cloneInfoWeatherFirst.classList.remove('active-clone');
