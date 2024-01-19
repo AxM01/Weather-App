@@ -127,7 +127,7 @@ function fetchData() {
                     cloneInfoWeatherFirst.remove();
                     cloneInfoHumidityFirst.remove();
                     cloneInfoWindFirst.remove();
-                }, 5000);
+                }, 22000);
             }
 
             }
