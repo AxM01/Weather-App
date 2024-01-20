@@ -49,7 +49,7 @@ function fetchData() {
             setTimeout(() => {
                 container.classList.remove('active');
 
-            },2500);
+            },5000);
 
             switch (json.weather[0].main){
                 case'Clear':
@@ -106,7 +106,7 @@ function fetchData() {
                 infoWeather.insertAdjacentElement("afterend", elCloneInfoWeather);
                 infoHumidity.insertAdjacentElement("afterend", elCloneInfoHummidity);
                 infoWind.insertAdjacentElement("afterend", elCloneInfoWind);
-            },2200);
+            },5000);
 
             const cloneInfoWeather = document.querySelectorAll('.info-weather.active-clone');
             const totalCloneInfoWeather = cloneInfoWeather.length;
@@ -128,7 +128,7 @@ function fetchData() {
                     cloneInfoHumidityFirst.remove();
                     cloneInfoWindFirst.remove();
             
-                },10000);
+                },5000);
             }
 
             }
